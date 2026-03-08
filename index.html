@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>STRIDE | High-Performance Workspace</title>
+  <meta name="description"
+    content="STRIDE — A focus-driven project management workspace. Plan projects, track daily tasks, manage timelines, and deep-work sessions — all in one premium, distraction-free interface." />
+  <meta name="keywords"
+    content="project management, productivity, task tracking, focus timer, daily planner, timeline, team collaboration, workspace, deep work, PWA" />
+  <meta name="author" content="STRIDE" />
+
+  <!-- Security: Control referrer leakage -->
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+
+  <!-- CSRF: populated at runtime by AuthContext after GET /api/auth/csrf -->
+  <meta name="csrf-token" content="" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="STRIDE | High-Performance Workspace" />
+  <meta property="og:description"
+    content="A focus-driven project management workspace. Plan projects, track daily tasks, manage timelines, and deep-work sessions — all in one premium interface." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://stride-front-sandy.vercel.app/" />
+  <meta property="og:image" content="https://stride-front-sandy.vercel.app/og-image.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:site_name" content="STRIDE" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@STRIDE" />
+  <meta name="twitter:title" content="STRIDE | High-Performance Workspace" />
+  <meta name="twitter:description"
+    content="A focus-driven project management workspace. Plan projects, track tasks, and manage deep-work sessions." />
+  <meta name="twitter:image" content="https://stride-front-sandy.vercel.app/og-image.jpg" />
+
+  <!-- Favicons -->
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="apple-touch-icon" href="/pwa-192x192.png" />
+  <link rel="manifest" href="/manifest.webmanifest" />
+  <meta name="theme-color" content="#0f172a" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&family=Geist+Mono:wght@400;500;600;700&display=swap"
+    rel="stylesheet" />
+</head>
+
+<body>
+  <!-- Security: Anti-Clickjacking Frame-Buster (legacy fallback) ─────
+       Modern browsers enforce CSP frame-ancestors 'none' (set above).
+       This <noscript> + inline style fallback covers ancient browsers
+       that don't support CSP2. The style hides the page when framed;
+       the JS removes it when running top-level. Since our CSP blocks
+       unsafe-inline scripts, we use the noscript/style approach which
+       is CSP-compliant and doesn't require a nonce. -->
+  <style id="anticlick-frame-bust">
+    /* If we are framed, hide everything until proven top-level */
+    html {
+      display: none !important;
+    }
+  </style>
+  <noscript>
+    <meta http-equiv="refresh" content="0;url=about:blank" />
+  </noscript>
+
+  <div id="root"></div>
+  <script type="module" src="/src/main.tsx"></script>
+
+  <script type="module">
+    // Remove the anti-clickjack hiding style when running top-level.
+    // If framed, this module won't execute (blocked by CSP frame-ancestors).
+    if (window.self === window.top) {
+      const el = document.getElementById('anticlick-frame-bust');
+      if (el) el.remove();
+    } else {
+      // Framed — force top-level navigation (legacy frame-busting)
+      window.top.location = window.self.location;
+    }
+  </script>
+</body>
+
+</html>

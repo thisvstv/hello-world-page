@@ -1,0 +1,378 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 230 30% 98%;
+    --foreground: 222 47% 8%;
+
+    --card: 230 40% 98% / 0.55;
+    --card-foreground: 222 47% 8%;
+
+    --popover: 230 40% 98% / 0.70;
+    --popover-foreground: 222 47% 8%;
+
+    --primary: 239 84% 67%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 226 60% 95%;
+    --secondary-foreground: 222 47% 11%;
+
+    --muted: 225 20% 94%;
+    --muted-foreground: 215 25% 44%;
+
+    --accent: 226 60% 95%;
+    --accent-foreground: 222 47% 11%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 225 18% 88%;
+    --input: 225 18% 88%;
+    --ring: 239 84% 67%;
+
+    --radius: 1rem;
+
+    --sidebar-background: 230 40% 98% / 0.45;
+    --sidebar-foreground: 215 25% 44%;
+    --sidebar-primary: 239 84% 67%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 226 60% 95% / 0.5;
+    --sidebar-accent-foreground: 222 47% 11%;
+    --sidebar-border: 225 18% 88%;
+    --sidebar-ring: 239 84% 67%;
+
+    --glass-bg: 230 40% 98% / 0.55;
+    --glass-border: 225 30% 80% / 0.25;
+    --glass-blur: 40px;
+
+    --shadow-card: 0 50px 100px -20px rgba(0, 0, 0, 0.04), 0 30px 60px -30px rgba(0, 0, 0, 0.04);
+    --shadow-elevated: 0 8px 32px rgba(0, 0, 0, 0.05), 0 2px 8px rgba(0, 0, 0, 0.03);
+    --shadow-inner-glow: inset 0 1px 1px rgba(255, 255, 255, 0.7), inset 0 -1px 1px rgba(0, 0, 0, 0.015);
+    --shadow-neon: 0 0 20px rgba(99, 102, 241, 0.2), 0 0 60px rgba(99, 102, 241, 0.06);
+  }
+
+  .dark {
+    --background: 222 47% 2%;
+    --foreground: 0 0% 100%;
+
+    --card: 0 0% 0% / 0.40;
+    --card-foreground: 0 0% 100%;
+
+    --popover: 0 0% 4% / 0.60;
+    --popover-foreground: 0 0% 100%;
+
+    --primary: 239 84% 67%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 217 33% 10%;
+    --secondary-foreground: 0 0% 88%;
+
+    --muted: 217 33% 12%;
+    --muted-foreground: 215 20% 65%;
+
+    --accent: 217 33% 12%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 62% 30%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 217 33% 18%;
+    --input: 217 33% 14%;
+    --ring: 239 84% 67%;
+
+    --sidebar-background: 0 0% 0% / 0.32;
+    --sidebar-foreground: 215 20% 65%;
+    --sidebar-primary: 239 84% 67%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 217 33% 12% / 0.5;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 217 33% 18%;
+    --sidebar-ring: 239 84% 67%;
+
+    --glass-bg: 0 0% 0% / 0.40;
+    --glass-border: 0 0% 100% / 0.10;
+    --glass-blur: 40px;
+
+    --shadow-card: 0 50px 100px -20px rgba(0, 0, 0, 0.5), 0 30px 60px -30px rgba(0, 0, 0, 0.4);
+    --shadow-elevated: 0 8px 32px rgba(0, 0, 0, 0.4), 0 2px 8px rgba(0, 0, 0, 0.3);
+    --shadow-inner-glow: inset 0 1px 1px rgba(255, 255, 255, 0.06), inset 0 -1px 1px rgba(0, 0, 0, 0.2);
+    --shadow-neon: 0 0 20px rgba(99, 102, 241, 0.4), 0 0 60px rgba(99, 102, 241, 0.15);
+  }
+}
+
+@layer base {
+  * {
+    border-color: hsl(var(--border));
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+  }
+}
+
+/* RTL / Arabic: apply Cairo font globally */
+html[dir="rtl"] body {
+  font-family: 'Cairo', 'Inter', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+}
+
+/* Mesh gradient backgrounds — driven by accent color */
+.mesh-gradient-light {
+  background: var(--accent-mesh-light,
+      radial-gradient(ellipse at 0% 0%, #EEF2FF 0%, transparent 50%),
+      radial-gradient(ellipse at 100% 50%, #E0F2FE 0%, transparent 50%),
+      radial-gradient(ellipse at 50% 100%, #EDE9FE 0%, transparent 50%),
+      linear-gradient(135deg, #F5F7FF 0%, #EEF0FB 50%, #F0F5FF 100%));
+  background-size: 200% 200%;
+  animation: meshBreathe 12s ease-in-out infinite;
+  will-change: background-position;
+}
+
+.mesh-gradient-dark {
+  background: var(--accent-mesh-dark,
+      radial-gradient(ellipse at 0% 0%, #020617 0%, transparent 50%),
+      radial-gradient(ellipse at 100% 100%, #1E1B4B 0%, transparent 50%),
+      linear-gradient(135deg, #020617 0%, #0F172A 50%, #1E1B4B 100%));
+  background-size: 200% 200%;
+  animation: meshBreathe 12s ease-in-out infinite;
+  will-change: background-position;
+}
+
+/* Mobile: slower mesh animation to save battery */
+@media (max-width: 768px) {
+
+  .mesh-gradient-light,
+  .mesh-gradient-dark {
+    animation-duration: 20s;
+    background-size: 150% 150%;
+  }
+}
+
+@keyframes meshBreathe {
+
+  0%,
+  100% {
+    background-position: 0% 0%;
+  }
+
+  25% {
+    background-position: 100% 0%;
+  }
+
+  50% {
+    background-position: 100% 100%;
+  }
+
+  75% {
+    background-position: 0% 100%;
+  }
+}
+
+@layer utilities {
+  .glass {
+    background: hsl(var(--glass-bg));
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    border: 0.5px solid hsl(var(--glass-border));
+    box-shadow: var(--shadow-inner-glow);
+  }
+
+  .glass-card {
+    background: hsl(var(--glass-bg));
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    border: 0.5px solid hsl(var(--glass-border));
+    box-shadow: var(--shadow-card), var(--shadow-inner-glow);
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .glass-card:hover {
+    box-shadow: var(--shadow-elevated), var(--shadow-inner-glow);
+    transform: translateY(-2px);
+  }
+
+  /* Mobile: disable hover transform for better scroll perf */
+  @media (hover: none) {
+    .glass-card:hover {
+      transform: none;
+    }
+  }
+
+  .shadow-card {
+    box-shadow: var(--shadow-card);
+  }
+
+  .shadow-elevated {
+    box-shadow: var(--shadow-elevated);
+  }
+
+  .shadow-neon {
+    box-shadow: var(--shadow-neon);
+  }
+
+  .shadow-inner-glow {
+    box-shadow: var(--shadow-inner-glow);
+  }
+
+  .transition-premium {
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  /* Silk gradient button — accent-aware */
+  .btn-silk {
+    background: linear-gradient(to top right, var(--accent-btn-from, #4f46e5), var(--accent-btn-to, #8b5cf6));
+    @apply text-white font-semibold;
+    box-shadow: var(--shadow-neon), 0 4px 16px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .btn-silk:hover {
+    box-shadow: var(--shadow-neon), 0 8px 24px rgba(0, 0, 0, 0.15);
+    transform: translateY(-1px);
+  }
+}
+
+/* ── Cyber-Stealth Mode (Shift+S) ───────────────────── */
+.stealth-active .stealth-blur {
+  filter: blur(6px);
+  opacity: 0.6;
+  transition: filter 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  user-select: none;
+}
+
+.stealth-active .stealth-blur:hover {
+  filter: blur(0);
+  opacity: 1;
+}
+
+/* ── Reduced motion ─────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ── Performance: Flat-design fallback for mobile / weak GPUs ── */
+/*
+   On small / low-power viewports, expensive GPU effects are stripped
+   and replaced with flat, near-opaque alternatives.
+
+   Targets:
+   • Screens < 768 px  (mobile / small tablets)
+   • Devices flagged with update: slow  (e-ink / low-refresh)
+   • Users who prefer reduced transparency  (macOS / iOS toggle)
+
+   Effects disabled:
+   ① ALL backdrop-filter (biggest GPU compositor cost)
+   ② Heavy box-shadows flattened to shadow-sm equivalent
+   ③ Hover lift transforms removed (scroll-jank prevention)
+*/
+
+@layer utilities {
+  .silk-blur-bg {
+    backdrop-filter: blur(var(--glass-blur, 40px));
+    -webkit-backdrop-filter: blur(var(--glass-blur, 40px));
+  }
+}
+
+@media (max-width: 767px),
+(update: slow),
+(prefers-reduced-transparency: reduce) {
+
+  /* ① Kill ALL backdrop-filter — single biggest mobile GPU drain.
+     Attribute selector catches every Tailwind backdrop-blur-* utility
+     as well as arbitrary-value classes like backdrop-blur-[48px]. */
+  [class*="backdrop-blur"],
+  .silk-blur-bg {
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+  }
+
+  /* Glass & glass-card: opaque fallback + kill blur */
+  .glass,
+  .glass-card {
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+    background: hsl(var(--background) / 0.96) !important;
+    border-color: hsl(var(--border)) !important;
+  }
+
+  .silk-blur-bg {
+    background-color: hsl(var(--background) / 0.96) !important;
+  }
+
+  /* ② Flatten heavy shadows ─────────────────────────── */
+
+  /* Standard Tailwind heavy shadows → shadow-sm */
+  .shadow-lg,
+  .shadow-xl,
+  .shadow-2xl {
+    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05) !important;
+  }
+
+  /* Reduce neon glow shadows — cheap GPUs struggle with blur radius */
+  .shadow-neon {
+    box-shadow: 0 0 6px rgb(99 102 241 / 0.12) !important;
+  }
+
+  /* ③ Disable hover lift transforms — prevents forced repaints */
+  .glass-card:hover,
+  .btn-silk:hover {
+    transform: none !important;
+  }
+}
+
+/* ── prefers-reduced-motion: enhanced Framer Motion compat ── */
+@media (prefers-reduced-motion: reduce) {
+
+  /* Framer Motion reads this CSS variable to skip spring calculations */
+  :root {
+    --motion-duration: 0.01ms;
+  }
+}
+
+/* ── Custom scrollbar ───────────────────────────────── */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--muted-foreground) / 0.15);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--muted-foreground) / 0.3);
+}
+
+/* ── Mobile safe-area ───────────────────────────────── */
+@supports (padding-bottom: env(safe-area-inset-bottom)) {
+  .pb-safe {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+}
+
+/* ── Rich-text editor placeholder ───────────────────── */
+[contenteditable="true"]:empty::before {
+  content: attr(data-placeholder);
+  color: hsl(var(--muted-foreground) / 0.25);
+  pointer-events: none;
+  display: block;
+}
